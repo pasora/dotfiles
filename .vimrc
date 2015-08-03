@@ -15,6 +15,7 @@ set statusline=%F%r%h%=
 set number
 set incsearch
 set ignorecase
+set autoindent
 set wildmenu wildmode=list:full
 nmap <silent> <Tab> 15<Right>
 vmap <silent> <Tab> <C-o>15<Right>
@@ -40,46 +41,11 @@ map H <Plug>(operator-quickhl-manual-this-motion)
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 
-
 set tabstop=2
 set shiftwidth=2
 
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'tpope/vim-fugitive'
 filetype plugin indent on
-
-Bundle 'h1mesuke/unite-outline'
-Bundle 'Shougo/unite.vim'
-Bundle 't9md/vim-quickhl'
-Bundle 'itchyny/lightline.vim'
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neosnippet'
-Bundle 'Shougo/neosnippet-snippets'
-
-Bundle 'thinca/vim-quickrun'
-let g:quickrun_config={'*': {'split': ''}}
-set splitbelow
-let g:quickrun_config={'*': {'hook/time/enable': '1'},}
-
-"Markdownプレビュー
-":PrevimOpen
-Bundle 'tyru/open-browser.vim'
-Bundle 'kannokanno/previm'
-let g:previm_open_cmd = ' '
-augroup PrevimSettings
-	autocmd!
-	autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-augroup END
-nnoremap [previm] <Nop>
-nmap <Space>p [previm]
-nnoremap <silent> [previm]o :<C-u>PrevimOpen<CR>
-nnoremap <silent> [previm]r :call previm#refresh()<CR>
-
-"Auto save
-Bundle 'vim-scripts/vim-auto-save'
-let g:auto_save = 1
 
 "バイナリ編集モード
 augroup BinaryXXD
@@ -92,3 +58,71 @@ augroup BinaryXXD
 	autocmd BufWritePost * set nomod | endif
 augroup END
 
+"---------------------------
+" Start Neobundle Settings.
+"---------------------------
+" bundleで管理するディレクトリを指定
+set runtimepath+=~/.vim/bundle/neobundle.vim/
+ 
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" neobundle自体をneobundleで管理
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" 今後このあたりに追加のプラグインをどんどん書いて行きます！！"
+NeoBundle 'tpope/vim-fugitive'
+
+"Auto save
+NeoBundle 'vim-scripts/vim-auto-save'
+let g:auto_save = 1
+
+"Markdownプレビュー
+":PrevimOpen
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'kannokanno/previm'
+let g:previm_open_cmd = ' '
+augroup PrevimSettings
+	autocmd!
+	autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+augroup END
+nnoremap [previm] <Nop>
+nmap <Space>p [previm]
+nnoremap <silent> [previm]o :<C-u>PrevimOpen<CR>
+nnoremap <silent> [previm]r :call previm#refresh()<CR>
+
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 't9md/vim-quickhl'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'petdance/vim-perl'
+NeoBundle 'hotchpotch/perldoc-vim'
+
+NeoBundle 'thinca/vim-quickrun'
+let g:quickrun_config={'*': {'split': ''}}
+set splitbelow
+let g:quickrun_config={'*': {'hook/time/enable': '1'},}
+
+" Coffee Script Syntax Highlight
+NeoBundle 'kchmck/vim-coffee-script'
+
+au BufRead,BufNewFile,BufReadPre *.coffee	set filetype=coffee
+autocmd FileType coffee	setlocal sw=2 sts=2 ts=2 et
+autocmd BufWritepost *.coffee silent make!
+autocmd QuickFixCmdPost * nested cwindow | redraw!
+nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
+
+" Required:
+filetype plugin indent on
+
+"未インストールのプラグインがある場合、インストールするかどうかを尋ねてくれるようにする設定
+" 毎回聞かれると邪魔な場合もあるので、この設定は任意です。
+NeoBundleCheck
+
+"-------------------------
+" End Neobundle Settings.
+"-------------------------
+call neobundle#end()
