@@ -1,3 +1,5 @@
+" you have to place ~/.vim/rc/dein.toml and ~/.vim/rc/dein_lazy.toml
+
 set nocompatible
 set backspace=start,eol,indent
 set whichwrap=b,s,[,],<,>,~
