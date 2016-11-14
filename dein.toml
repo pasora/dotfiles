@@ -16,7 +16,7 @@ hook_post_update = '''
 	else
 		let cmd = 'make'
 	endif
-	let g:dein#pulgin.build = cmd
+	let g:dein#plugin.build = cmd
 '''
 
 [[plugins]]
