@@ -11,6 +11,7 @@ highlight MachParen ctermfg=none ctermbg=darkgray
 highlight Comment ctermfg=DarkGreen ctermbg=none
 highlight Directory ctermfg=DarkGreen ctermbg=none
 set tabstop=2
+set expandtab
 set laststatus=2
 set shiftwidth=2
 set statusline=%F%r%h%=
