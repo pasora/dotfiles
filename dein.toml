@@ -31,3 +31,5 @@ repo = 'kannokanno/previm'
 repo = 'tyru/open-browser.vim'
 [[plugins]]
 repo = 'vim-scripts/vim-auto-save'
+[[plugins]]
+repo = 'lervag/vimtex'

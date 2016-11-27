@@ -1,9 +1,12 @@
 #!/bin/sh
 
-cp .vimrc ~/.vimrc
+cp -f .vimrc ~/.vimrc
 mkdir -p ~/.vim/rc
-cp dein.toml ~/.vim/rc/dein.toml
-cp dein_lazy.toml ~/.vim/rc/dein_lazy.toml
+cp -f dein.toml ~/.vim/rc/dein.toml
+cp -f dein_lazy.toml ~/.vim/rc/dein_lazy.toml
+cp -f .latexmkrc ~/.latexmkrc
+mkdir -p ~/.vim/ftplugin
+cp -f tex_quickrun.vim ~/.vim/ftplugin/tex_quickrun.vim
 
 vim
 

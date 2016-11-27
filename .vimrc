@@ -70,3 +70,13 @@ augroup PrevimSettings
 augroup END
 
 let g:auto_save = 1
+
+let g:vimtex_fold_envs = 0
+let g:vimtex_view_general_viewer = 'mupdf'
+
+augroup filetype
+  autocmd!
+  autocmd BufRead,BufNewFile *.tex set filetype=tex
+augroup END
+
+let g:tex_conceal=''
