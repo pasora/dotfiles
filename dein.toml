@@ -1,4 +1,4 @@
-# ~/.vim/rc/dein.toml
+#課題 ~/.vim/rc/dein.toml
 
 [[plugins]]
 repo = 'Shougo/dein.vim'
@@ -32,7 +32,7 @@ hook_add = '''
   \ 'outputter' : 'error',
   \ 'outputter/error/success' : 'null',
   \ 'outputter/error/error' : 'quickfix',
-  \ 'srcfile' : expand("%"),
+  \ 'srcfile' : 'main.tex',
   \ 'cmdopt' : '-pdfdvi',
   \ 'hook/sweep/files' : [
   \   '%S:p:r.aux',
