@@ -1,4 +1,4 @@
-#課題 ~/.vim/rc/dein.toml
+# ~/.vim/rc/dein.toml
 
 [[plugins]]
 repo = 'Shougo/dein.vim'
