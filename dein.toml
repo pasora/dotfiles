@@ -89,6 +89,7 @@ hook_add = '''
   nnoremap <silent><F5> :QuickRun<CR>
 
   autocmd BufWritePost,FileWritePost *.tex QuickRun tex
+
 '''
 
 [[plugins]]

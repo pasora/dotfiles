@@ -18,7 +18,7 @@ set statusline=%F%r%h%=
 set number
 set incsearch
 set ignorecase
-set autoindent
+set smartindent
 set wildmenu wildmode=list:full
 nmap <silent> <Tab> 15<Right>
 vmap <silent> <Tab> <C-o>15<Right>
@@ -69,7 +69,8 @@ augroup PrevimSettings
 	autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 augroup END
 
-let g:auto_save = 1
+let g:auto_save = 0
+let g:auto_save_in_insert_mode = 0
 
 let g:vimtex_fold_envs = 0
 let g:vimtex_view_general_viewer = 'mupdf'
