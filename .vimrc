@@ -32,7 +32,6 @@ imap <C-b> <ESC>:read ‾/.vim/bf<CR>
 nmap <C-b> :read ‾/.vim/bf<CR>
 vmap <C-b> :w! ‾/.vim/bf<CR>
 
-
 " dein settings
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . 'repos/github.com/Shougo/dein.vim'
@@ -69,16 +68,6 @@ augroup PrevimSettings
 	autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 augroup END
 
-let g:auto_save = 0
+let g:auto_save = 1
 let g:auto_save_in_insert_mode = 0
-
-let g:vimtex_fold_envs = 0
-let g:vimtex_view_general_viewer = 'mupdf'
-
-augroup filetype
-  autocmd!
-  autocmd BufRead,BufNewFile *.tex set filetype=tex
-augroup END
-
-let g:tex_conceal=''
 
