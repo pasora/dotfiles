@@ -10,6 +10,7 @@ highlight CursorLine ctermfg=none ctermbg=darkgray cterm=none
 highlight MachParen ctermfg=none ctermbg=darkgray
 highlight Comment ctermfg=DarkGreen ctermbg=none
 highlight Directory ctermfg=DarkGreen ctermbg=none
+set t_Co=256
 set tabstop=2
 set expandtab
 set laststatus=2
@@ -70,4 +71,97 @@ augroup END
 
 let g:auto_save = 1
 let g:auto_save_in_insert_mode = 0
+
+let g:gitgutter_sign_removed_first_line = '_^'
+
+let g:lightline = {
+        \ 'mode_map': {'c': 'NORMAL'},
+        \ 'active': {
+        \   'right': [ [ 'syntastic', 'lineinfo' ],
+        \              [ 'percent' ], [ 'winform' ],
+        \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
+        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'branch', 'filename' ] ]
+        \ },
+        \ 'component_function': {
+        \   'linetotal': 'LightLineTotal',
+        \   'modified': 'LightLineModified',
+        \   'readonly': 'LightLineReadonly',
+        \   'fugitive': 'LightLineFugitive',
+        \   'filename': 'LightLineFilename',
+        \   'filepath': 'LightLineFilepath',
+        \   'fileformat': 'LightLineFileformat',
+        \   'filetype': 'LightLineFiletype',
+        \   'fileencoding': 'LightLineFileencoding',
+        \   'mode': 'LightLineMode',
+        \   'winform': 'LightLineWinform'
+        \ },
+        \ 'separator': { 'left': ">", 'right': "<" },
+        \ 'subseparator': { 'left': ">", 'right': "<" },
+        \ 'component_expand': {
+        \   'syntastic': 'SyntasticStatuslineFlag',
+        \ },
+        \ 'component_type': {
+        \   'syntastic': 'error',
+        \ }
+        \ }
+
+let g:lightline.component = {
+    \ 'lineinfo': '%3l[%L]:%-2v'}
+
+function! LightLineWinform()
+  return winwidth(0) > 50 ? 'w' . winwidth(0) . ':' . 'h' . winheight(0) : ''
+endfunction
+
+function! LightLineModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightLineReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? "RO" : ''
+endfunction
+
+function! LightLineFilename()
+  return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ '' != expand('%') && winwidth(0) <=120 ? expand('%:t') : winwidth(0) >120 ? expand('%:p') : '[No Name]') .
+        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+endfunction
+
+function! LightLineFilepath()
+  return winwidth(0) <=120 ? expand('%:h') : ''
+endfunction
+
+function! LightLineFugitive()
+  try
+    if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head') && winwidth(0) > 55
+      let _ = fugitive#head()
+      return strlen(_) ? 'RO '._ : ''
+    endif
+  catch
+  endtry
+  return ''
+endfunction
+
+function! LightLineFileformat()
+  return winwidth(0) > 80 ? &fileformat : ''
+endfunction
+
+function! LightLineFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightLineFileencoding()
+  return winwidth(0) > 60 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
+function! LightLineMode()
+  return winwidth(0) > 30 ? lightline#mode() : ''
+endfunction
+
+function! s:syntastic()
+  SyntasticCheck
+  call lightline#update()
+endfunction
 

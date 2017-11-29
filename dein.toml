@@ -27,7 +27,7 @@ repo = 'thinca/vim-quickrun'
 [[plugins]]
 repo = 'kannokanno/previm'
 [[plugins]]
-repo = 'tyru/open-browser.vim'
-[[plugins]]
 repo = 'vim-scripts/vim-auto-save'
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
 
