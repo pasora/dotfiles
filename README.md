@@ -1,4 +1,6 @@
 dotfiles
 ------
+Run `./main.sh` to deploy dotfiles.
 
-クローンしてシェルスクリプトを実行するだけ
+Make sure the version of Vim is 8.0 or above.
+
