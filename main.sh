@@ -5,8 +5,8 @@ case ${terminal} in
   Darwin* )
     # macOS
     echo "macOS"
-    diff .tmux.conf ~/.tmux.conf
-    cp .tmux.conf ~/.tmux.conf
+    diff mac/.tmux.conf ~/.tmux.conf
+    cp mac/.tmux.conf ~/.tmux.conf
     ./setup_vim.sh mac
     ;;
   *Msys | *Cygwin )
