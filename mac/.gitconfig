@@ -1,0 +1,8 @@
+[core]
+  editor = vim
+[user]
+	name = Masahiko Hara
+	email = pasora@sfc.wide.ad.jp
+[ghq]
+  root = ~/git
+

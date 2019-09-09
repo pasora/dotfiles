@@ -27,7 +27,5 @@ cp ${os}/dein_lazy.toml ~/.vim/rc/dein_lazy.toml
 
 mkdir -p ~/.vim/ftplugin
 
-echo "Please execute vim if you run this first time"
-
 exit 0
 
